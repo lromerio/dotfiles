@@ -1,0 +1,37 @@
+- defaults:
+    link:
+        relink: true
+        create: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    # Use this if dotfiles are not in '~/.dotfiles'
+    # ~/.dotfiles: ''
+
+    ~/.bash_profile:
+    ~/.bashrc:
+    ~/.gdbinit:
+    ~/.tern-project: # nvim js autocomplete
+    ~/.tmux.conf:
+    ~/.vim:
+    ~/.vimrc:
+    ~/.xinitrc:
+    ~/.Xresources:
+    ~/.zprofile:
+    ~/.zshrc:
+
+    ~/.config/background.jpg: config/background.jpg
+    ~/.config/screenlayout: config/screenlayout
+    ~/.config/rofi: config/rofi
+    ~/.config/powerline: config/powerline
+    ~/.config/nvim: config/nvim
+    ~/.config/i3: config/i3
+    ~/.config/gdbinit-gef.py: config/gdbinit-gef.py
+    ~/.config/dunst: config/dunst
+    ~/.config/alacritty: config/alacritty
+
+    ~/.config/systemd/user/battery_notification.service: config/systemd/user/battery_notification.service
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

@@ -1,0 +1,153 @@
+! #########################################
+!                  Xft
+! #########################################
+
+Xft.dpi: 144
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xcursor.size:  32
+
+
+! ! #########################################
+! !                   URxvt
+! ! #########################################
+!
+! URxvt.selection.pattern-0: \][ ](.+)
+! URxvt.selection.pattern-1: >>>[ ]+(.+)
+! URxvt.cutchars: "\\ `\"\'()*;<>[]{|}&,=?@^\:-."
+!
+! ! URxvt.font: xft:Droid Sans Mono for Powerline:size=10:antialias=true
+! ! URxvt.boldFont: xft:Droid Sans Mono for Powerline:size=10:Bold:antialias=true
+! ! URxvt.boldFont: xft:Cousine for Powerline:size=10:Bold:antialias=true,\
+! !                 xft:Font Awesome 5 Brands:Solid:size=9
+!
+! URxvt.font: xft:Cousine for Powerline:antialias=true:size=10, \
+!             xft:Hack:size=12:antialias=true:size=12, \
+!             xft:Font Awesome 5 Brands:size=10:style=Solid:size=9;1:pixelsize=12, \
+!             xft:Font Awesome 5 Free:size=10:style=Solid:size=9;1:pixelsize=12, \
+!             xft:Source Code Pro:style=medium:size=10:antialias=true:pixelsize=12, \
+!             xft:Ubuntu Mono derivative Powerline:size=10:pixelsize=12, \
+!             xft:Inconsolata for Powerline:size=10:pixelsize=12, \
+!             xft:Dejavu Sans Mono:size=10:pixelsize=12, \
+!             xft:Symbola:size=10
+!
+! URxvt.italicFont: xft:Inconsolata:pixelsize=14,xft:Droid Sans Mono:pixelsize=14, \
+!                   xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14, \
+!                   xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14
+!
+! URxvt.boldFont: xft:Cousine for Powerline:style=Bold:antialias=true:size=10, \
+!                 xft:Hack:size=12:antialias=true:size=12, \
+!                 xft:Font Awesome 5 Brands:style=Solid:size=9;1:pixelsize=12, \
+!                 xft:Font Awesome 5 Free:style=Solid:size=9;1:pixelsize=12, \
+!                 xft:Source Code Pro:style=Bold:antialias=true:pixelsize=12, \
+!                 xft:Ubuntu Mono derivative Powerline:style=Bold:pixelsize=12, \
+!                 xft:Inconsolata for Powerline:style=Bold:pixelsize=12, \
+!                 xft:Dejavu Sans Mono:style=Bold:pixelsize=12, \
+!                 xft:Symbola
+! URxvt.depth: 32
+!
+! !! BACKGROUND TRANSPARENT
+! ! URxvt.background: [100]#262626
+! !URxvt.foreground: grey
+!
+! URxvt.loginShell:               true
+! URxvt.scrollBar:                false
+! URxvt.mouseWheelScrollPage:     false
+! URxvt.cursorBlink:              true
+! URxvt.saveLines:                5000
+! URxvt.letterSpace:              -1
+! URxvt.colorUL:                  #4682B4
+! URxvt*skipScroll:               true
+!
+! ! also -> ~/.urxvt/ext
+! URxvt.perl-lib:             /usr/lib/urxvt/perl/
+!
+! ! Extensions
+! URxvt.perl-ext-common:      default,matcher,font-size,clipboard,confirm-paste,url-select
+! URxvt.url-launcher:         /usr/bin/xdg-open
+! URxvt.url-select.launcher:  chromium
+! URxvt.matcher.button:       1
+! URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+! URxvt.matcher.pattern.2:    \\B(/\\S+?):(\\d+)(?=:|$)
+! URxvt.matcher.launcher.2:   gvim +$2 $1
+! URxvt.matcher.launcher:     x-www-browser
+! URxvt.keysym.C-Delete:      matcher:last
+! URxvt.keysym.M-Delete:      matcher:list
+!
+!
+! ! do not scroll with output
+! URxvt*scrollTtyOutput: false
+!
+! ! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+! URxvt*scrollWithBuffer: true
+!
+! ! scroll back to the bottom on keyprese
+! URxvt*scrollTtyKeypress: true
+!
+! ! secondary screen buffer
+! URxvt.secondaryScreen: 1
+! URxvt.secondaryScroll: 0
+!
+! ! tabs
+! URxvt.tabbed.tabbar-fg: 2
+! URxvt.tabbed.tabbar-bg: 0
+! URxvt.tabbed.tab-fg: 3
+! URxvt.tabbed.tab-bg: 0
+!
+! ! fullscreen press F11
+! URxvt.keysym.F11: perl:fullscreen:switch
+!
+! ! resize font on the fly
+! URxvt.keysym.C-Up:     font-size:increase
+! URxvt.keysym.C-Down:   font-size:decrease
+! URxvt.keysym.C-S-Up:   font-size:incglobal
+! URxvt.keysym.C-S-Down: font-size:decglobal
+! URxvt.keysym.C-equal:  font-size:reset
+! URxvt.keysym.C-slash:  font-size:show
+! ! For the Ctrl+Shift bindings to work, a default binding needs to be disabled
+! URxvt.iso14755: false
+! URxvt.iso14755_52: false
+!
+! ! do not scroll to bottom when there is output, but do scroll to bottom on key press
+! URxvt.scrollTtyOutput: False
+! URxvt.scrollTtyKeypress: True
+! URxvt.scrollWithBuffer: True
+!
+! ! clipboard
+! ! URxvt.keysym.Mod4-c: perl:clipboard:copy
+! ! URxvt.keysym.Mod4-v: perl:clipboard:paste
+! URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+! URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+!
+! ! gruvbox
+! *foreground:    #ebdbb2
+! *background:    #282828
+!
+! !black
+! *color0:    #1d2021
+! *color8:    #665c54
+! !red
+! *color1:    #cc241d
+! *color9:    #fb4934
+! !green
+! *color2:    #98971a
+! *color10:   #b8bb26
+! !yellow
+! *color3:    #d79921
+! *color11:   #fabd2f
+! !blue
+! *color4:    #458588
+! *color12:   #83a598
+! !magenta
+! *color5:    #b16286
+! *color13:   #d3869b
+! !cyan
+! *color6:    #689d6a
+! *color14:   #8ec07c
+! !white
+! *color7:    #dbae93
+! *color15:   #fbf1c7

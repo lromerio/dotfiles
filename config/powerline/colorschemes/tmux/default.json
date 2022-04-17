@@ -1,0 +1,16 @@
+{
+	"groups": {
+        "hostname": {"fg": "a_bg", "bg": "fg4", "attrs": []},
+        "load": {"fg": "fg2", "bg": "bg1", "attrs": []},
+		"active_window_status": {"fg": "fg2",   "bg": "bg2",    "attrs": []},
+		"window_status":        {"fg": "fg2",     "bg": "bg2",    "attrs": []},
+		"activity_status":      {"fg": "fg2",     "bg": "bg2",    "attrs": []},
+		"bell_status":          {"fg": "fg2",        "bg": "a_red",    "attrs": []},
+		"window":               {"fg": "fg2",      "bg": "bg2",    "attrs": []},
+		"window:divider":       {"fg": "a_bg",      "bg": "bg2",    "attrs": []},
+		"window:current":       {"fg": "a_bg", "bg": "b_blue", "attrs": []},
+		"window_name":          {"fg": "a_bg",      "bg": "b_blue", "attrs": ["bold"]},
+		"session":              {"fg": "a_bg",      "bg": "fg4",   "attrs": ["bold"]},
+		"session:prefix":       {"fg": "a_bg",     "bg": "d_orange", "attrs": ["bold"]}
+	}
+}

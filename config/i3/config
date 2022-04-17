@@ -1,0 +1,624 @@
+#!/usr/bin/env bash
+#
+
+##########################################################################
+#                  Main i3 config options and variables
+##########################################################################
+
+# list: xmodmap -pm
+## Alt key
+set   $mod   Mod1
+## Windows key
+set   $sup   Mod4
+##########################################################################
+set   $exec          exec          --no-startup-id
+set   $exec_always   exec_always   --no-startup-id
+set   $laptop        eDP-1
+set   $monitor_4k    DP1-2
+set   $monitor2      HDMI-1
+# set   $monitor2      DP2-1
+
+## Default applications
+##
+set   $def_browser           firefox
+set   $def_terminal          alacritty
+set   $def_terminal_second   urxvt
+set   $def_file_manager      ranger
+
+# font
+font pango: Ubuntu Mono derivative Powerline 10
+# font pango:monospace 9
+
+# thin borders
+hide_edge_borders smart
+
+# Automatic back-and-forth when switching to the current workspace
+workspace_auto_back_and_forth yes
+
+# default workspace behaviour (default|stacking|tabbed)
+workspace_layout default
+
+# vertical | horizontal
+default_orientation horizontal
+
+# Delaying urgency hint reset on workspace change
+force_display_urgency_hint 4000 ms
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+## disable borders by default
+default_border pixel 2
+
+## enable borders on floating windows
+default_floating_border normal 0
+
+# the mouse is the focus master
+focus_follows_mouse yes
+
+# move the mouse also when changing the workspace
+mouse_warping output
+
+# be smart with pop-ups
+popup_during_fullscreen smart
+
+##########################################################################
+#                         NAMED WORKSPACES
+##########################################################################
+
+set $ws0  "0"
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+set $ws11 "11"
+## extra
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
+set $ws21 "21"
+set $ws22 "22"
+
+## Workspaces on specific screen
+workspace $ws0  output $laptop   $monitor2
+workspace $ws1  output $laptop   $monitor2
+workspace $ws2  output $laptop   $monitor2
+workspace $ws3  output $laptop   $monitor2
+workspace $ws4  output $laptop   $monitor2
+workspace $ws5  output $laptop   $monitor2
+workspace $ws6  output $laptop   $monitor2
+workspace $ws7  output $laptop   $monitor2
+workspace $ws8  output $laptop   $monitor2
+workspace $ws9  output $laptop   $monitor2
+workspace $ws10 output $laptop   $monitor2
+workspace $ws11 output $laptop   $monitor2
+
+##########################################################################
+#                   Keys / shortcuts for i3WM
+##########################################################################
+
+## move focused container to workspace and switch to it
+bindsym $mod+Shift+degree     move container to workspace $ws0  ; workspace $ws0
+bindsym $mod+Shift+1          move container to workspace $ws1  ; workspace $ws1
+bindsym $mod+Shift+2          move container to workspace $ws2  ; workspace $ws2
+bindsym $mod+Shift+3          move container to workspace $ws3  ; workspace $ws3
+bindsym $mod+Shift+4          move container to workspace $ws4  ; workspace $ws4
+bindsym $mod+Shift+5          move container to workspace $ws5  ; workspace $ws5
+bindsym $mod+Shift+6          move container to workspace $ws6  ; workspace $ws6
+bindsym $mod+Shift+7          move container to workspace $ws7  ; workspace $ws7
+bindsym $mod+Shift+8          move container to workspace $ws8  ; workspace $ws8
+bindsym $mod+Shift+9          move container to workspace $ws9  ; workspace $ws9
+bindsym $mod+Shift+0          move container to workspace $ws10 ; workspace $ws10
+bindsym $mod+Shift+apostrophe move container to workspace $ws11 ; workspace $ws11
+## extra workspaces
+bindsym $sup+Shift+1          move container to workspace $ws12 ; workspace $ws12
+bindsym $sup+Shift+2          move container to workspace $ws13 ; workspace $ws13
+bindsym $sup+Shift+3          move container to workspace $ws14 ; workspace $ws14
+bindsym $sup+Shift+4          move container to workspace $ws15 ; workspace $ws15
+bindsym $sup+Shift+5          move container to workspace $ws16 ; workspace $ws16
+bindsym $sup+Shift+6          move container to workspace $ws17 ; workspace $ws17
+bindsym $sup+Shift+7          move container to workspace $ws18 ; workspace $ws18
+bindsym $sup+Shift+8          move container to workspace $ws19 ; workspace $ws19
+bindsym $sup+Shift+9          move container to workspace $ws20 ; workspace $ws20
+bindsym $sup+Shift+0          move container to workspace $ws21 ; workspace $ws21
+bindsym $sup+Shift+apostrophe move container to workspace $ws22 ; workspace $ws22
+
+## switch to workspace
+bindsym $mod+degree     workspace $ws0
+bindsym $mod+1          workspace $ws1
+bindsym $mod+2          workspace $ws2
+bindsym $mod+3          workspace $ws3
+bindsym $mod+4          workspace $ws4
+bindsym $mod+5          workspace $ws5
+bindsym $mod+6          workspace $ws6
+bindsym $mod+7          workspace $ws7
+bindsym $mod+8          workspace $ws8
+bindsym $mod+9          workspace $ws9
+bindsym $mod+0          workspace $ws10
+bindsym $mod+apostrophe workspace $ws11
+## extra workspaces
+bindsym $sup+1          workspace $ws12
+bindsym $sup+2          workspace $ws13
+bindsym $sup+3          workspace $ws14
+bindsym $sup+4          workspace $ws15
+bindsym $sup+5          workspace $ws16
+bindsym $sup+6          workspace $ws17
+bindsym $sup+7          workspace $ws18
+bindsym $sup+8          workspace $ws19
+bindsym $sup+9          workspace $ws20
+bindsym $sup+0          workspace $ws21
+bindsym $sup+apostrophe workspace $ws22
+
+
+## change focus on windows
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $sup+Tab focus left
+bindsym $sup+Shift+Tab focus right
+
+## lock screen
+bindsym $sup+l $exec i3lock --show-failed-attempts --ignore-empty-password -c 000000
+
+## move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+## enter fullscreen mode for the focused container 0
+bindsym $mod+f fullscreen
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+## split in horizontal orientation
+bindsym $mod+b split h
+## split in vertical orientation
+bindsym $mod+v split v
+
+## toggle tiling / floating
+bindsym $mod+space floating toggle, border toggle
+
+## focus the parent container
+bindsym $mod+Shift+a focus parent
+# bindsym $mod+d focus child
+
+## restart i3 inplace
+bindsym $mod+Shift+r restart
+bindsym $sup+Shift+r $exec ~/.config/i3/scripts/launch_polybar.sh
+## reload the configuration file
+bindsym $mod+Shift+c reload
+
+## sticky window
+## have it stay on screen even if you switch to another workspace
+bindsym $mod+Shift+s sticky toggle
+
+## Kill windows
+bindsym $mod+Shift+q kill
+# bindsym $mod+Escape kill
+
+## The middle button over a titlebar kills the window
+bindsym --release button2 kill
+## The middle button and a modifer over any part of the window kills the window
+bindsym --whole-window $mod+button2 kill
+
+## Audio/Media Player controls
+bindsym XF86AudioRaiseVolume $exec ~/.config/i3/scripts/volume.sh +5%
+bindsym XF86AudioLowerVolume $exec ~/.config/i3/scripts/volume.sh -5%
+bindsym XF86AudioMute        $exec ~/.config/i3/scripts/volume.sh mute
+
+bindsym XF86AudioPlay $exec ~/.config/i3/scripts/audio_manage.sh playpause
+bindsym XF86AudioNext $exec ~/.config/i3/scripts/audio_manage.sh next
+bindsym XF86AudioPrev $exec ~/.config/i3/scripts/audio_manage.sh previous
+
+## Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+## Touchpad controls (toggle)
+# bindsym XF86TouchpadToggle $exec ~/.config/i3/scripts/toggletouchpad.sh
+
+## switch between the current and the previously focused one
+bindsym $mod+Tab            workspace back_and_forth
+bindsym $mod+Shift+Tab      move container to workspace back_and_forth
+bindsym $mod+n              workspace next_on_output
+bindsym $mod+p              workspace prev_on_output
+bindsym $mod+Shift+n        workspace next
+bindsym $mod+Shift+p        workspace prev
+
+## Rofi
+# drun
+bindsym $sup+d exec rofi -show drun -show-icons -lines 10 -columns 2 -opacity "80" -bw 1 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Ubuntu 15" -width 50 -sidebar-mode -theme Arc-Dark
+# list opened windows
+bindsym $sup+w $exec rofi -show window -show-icons -opacity "90" -bw 1 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#42f4aa" -hlfg "#9575cd" -font "Ubuntu 15" -theme Arc-Dark
+# ssh
+bindsym $sup+s $exec rofi -show ssh -show-icons -opacity "90" -bw 1 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#42f4aa" -hlfg "#9575cd" -font "Ubuntu 15" -sidebar-mode -lines 20 -theme Arc-Dark
+# cheat
+bindsym $sup+c exec --no-startup-id "/home/lucio/.config/rofi/cheatsheet.sh"
+# tmux
+bindsym $sup+t exec --no-startup-id "/home/lucio/.config/rofi/tmux_sessions.sh"
+
+
+## move window to left monitor
+# bindsym $mod+m move workspace to output left
+bindsym $mod+Control+Left  move workspace to output left
+bindsym $mod+Control+Right move workspace to output right
+bindsym $mod+Control+Up    move workspace to output up
+bindsym $mod+Control+Down  move workspace to output down
+
+## center the windows to the screen
+bindsym $sup+Shift+c move position center
+
+
+##########################################################################
+#                   Run applications with shortcuts
+##########################################################################
+
+bindsym $sup+Shift+f      $exec $def_browser
+bindsym $mod+Return       $exec $def_terminal
+bindsym $mod+Shift+Return $exec $def_terminal_second
+
+## start keepass
+bindsym $sup+k $exec QT_SCALE_FACTOR=0.7 keepassxc
+
+## open gvim in floating mode shortcut
+bindsym $sup+Shift+v $exec gvim --role 'gvim_float' -geometry 140x35
+for_window [window_role="gvim_float"] floating enable, move position center, border normal
+
+## open a new i3 workspace not in use (smaller number possible)
+bindsym $sup+n $exec ~/.config/i3/scripts/i3-new-workspace.sh
+
+##########################################################################
+#                        Shutdown/Reboot/Sleep menu
+##########################################################################
+
+## Logout, reboot, shutdown, hibernate
+set $mode_system System: [l] lock, [e] logout, [s] suspend, [h] hibernate, [r] reboot, [Shift+s] shutdown
+mode "$mode_system" {
+    bindsym l $exec ~/.config/i3/scripts/i3exit lock           , mode "default"
+    bindsym e $exec ~/.config/i3/scripts/i3exit logout         , mode "default"
+    bindsym s $exec ~/.config/i3/scripts/i3exit suspend        , mode "default"
+    bindsym h $exec ~/.config/i3/scripts/i3exit hibernate      , mode "default"
+    bindsym r $exec ~/.config/i3/scripts/i3exit reboot         , mode "default"
+    bindsym Shift+s $exec ~/.config/i3/scripts/i3exit shutdown , mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e        mode "$mode_system"
+
+##########################################################################
+#                        Run most used applications
+##########################################################################
+
+## Press $mod+o followed by either f, c, Esc or Return to launch firefox,
+set $mode_launcher Launch: \
+ [C]hromium [F]irefox [K]eepass [A]arandr [T]elegram
+mode "$mode_launcher" {
+    bindsym f $exec firefox          , mode "default"
+    bindsym c $exec chromium         , mode "default"
+    bindsym k $exec keepass          , mode "default"
+    bindsym a $exec arandr           , mode "default"
+    bindsym t $exec telegram-desktop  , mode "default"
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+o mode "$mode_launcher"
+
+##########################################################################
+#                            resize windows
+##########################################################################
+
+## resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+## resize mode
+bindsym $mod+r mode "resize"
+
+##########################################################################
+#                           change display mode
+##########################################################################
+
+## choose xrandr displaymode
+set $mode_display Display mode: [D]efault, [U]p
+mode "$mode_display" {
+    bindsym d $exec bash ~/.config/screenlayout/default.sh, \
+        mode "default"
+
+    bindsym u $exec bash ~/.config/screenlayout/2up.sh, \
+        mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+i mode "$mode_display"
+
+
+##########################################################################
+#                      easy way to disable ALT as meta
+##########################################################################
+
+set $disable_meta_key [ALT] key disabled (ENTER or ESC to re-enable)
+mode "$disable_meta_key" {
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+F12 mode "$disable_meta_key"
+
+##########################################################################
+#                        colors for desktop
+##########################################################################
+
+set $bg-color            #2f343f
+set $bg-color2           #397070
+set $bg-color3           #264b59
+set $bg-color4           #a3f7db
+set $bg-color5           #649987
+set $bg-color6           #3e8099
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $text-color2         #b8b9ba
+set $text-color3         #252626
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+set $separator           #757575
+set $indicator           #00ff00
+set $indicator2          #3e8099
+
+# window colors
+#                       border             background         text                  indicator
+client.focused          $bg-color          $bg-color6         $text-color           $indicator2
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  $indicator2
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  $indicator2
+client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color           $indicator2
+
+##########################################################################
+#                      list of windows in floating mode
+##########################################################################
+# for_window [class=".*"] border pixel 0
+# for_window [class=".*"] move position center
+for_window [class=".*"] title_format " %title "
+
+##
+## Floating windows
+##
+for_window [window_role="pop-up"]                      floating enable
+for_window [window_role="task_dialog"]                 floating enable
+for_window [class=".*" window_type="dialog"]           floating enable , border normal
+for_window [class=".*" window_type="popup_menu"]       floating enable , border normal
+for_window [class="(?i)Shutter"]                       floating enable , border normal
+for_window [class="(?i)Pavucontrol"]                   floating enable , border normal
+for_window [class="(?i)KeePass.*"]                     floating enable , border normal
+for_window [class="(?i)vlc"]                           floating enable , border normal
+for_window [class="(?i)file-roller"]                   floating enable , border normal
+for_window [class="(?i)Eog"]                           floating enable , border normal
+for_window [class="(?i)Evince"]                        floating enable , border normal
+for_window [class="(?i)qpdfview"]                      floating enable , border normal
+for_window [title="(?i)Remmina Remote Desktop Client"] floating enable , border normal
+for_window [class="(?i)Arandr"]                        floating enable , border normal
+for_window [title="(?i)Cookies Manager+.*"]            floating enable , border normal
+for_window [class="(?i)Gnome-calculator"]              floating enable , border normal
+for_window [class="(?i)system-config-printer"]         floating enable , border normal
+for_window [class="(?i)blueman-manager"]               floating enable , border normal
+for_window [class="(?i)nm-connection-editor"]          floating enable , border normal
+for_window [class="(?i)gnome-power-statistics"]        floating enable , border normal
+for_window [class="(?i)Solaar"]                        floating enable , border normal
+for_window [class="(?i)Gpicview"]                      floating enable , border normal
+for_window [class="(?i)Xfce4-appfinder"]               floating enable , border normal
+
+##########################################################################
+#                          STARTUP APPLICATIONS
+##########################################################################
+
+## If using gnome applications check
+## /etc/xdg/autostart/
+## for autostart application
+
+## disable mousepad while typing
+$exec syndaemon -i 1 -k -R -t
+
+## set keyboard mapping
+$exec_always localectl set-keymap fr_CH-latin1
+
+## man xkeyboard-config
+$exec_always setxkbmap -model pc105 -layout ch -variant fr -option lv3:ralt_switch
+$exec libinput-gestures-setup start
+
+## Change keyboard speed
+$exec_always xset r rate 200 50
+
+# ## start gnome-keyring daemon
+# $exec /usr/bin/gnome-keyring-daemon --start --daemonize --components=secrets,ssh
+
+## self explanatory
+$exec xrdb -merge ~/.Xresources
+
+## Enable touchpad horizontal Scrolling
+# $exec xinput --set-prop "DLL06E4:01 06CB:7A13 Touchpad" "Synaptics Two-Finger Scrolling" 1 1
+## disable natural scolling its horible
+$exec xinput --set-prop "DLL06E4:01 06CB:7A13 Touchpad" "libinput Natural Scrolling Enabled" 0
+## enable double click show menu
+$exec xinput --set-prop "DLL06E4:01 06CB:7A13 Touchpad" "libinput Click Method Enabled" 0 1
+$exec xinput --set-prop "DLL06E4:01 06CB:7A13 Touchpad" 'libinput Accel Speed' 0.6
+$exec xinput --set-prop "Logitech Perforance MX" "Device Accel Constant Deceleration" 0.700000
+$exec xinput --set-prop "ZLY ZELOTES GAME MOUSE" "Device Accel Constant Deceleration" 0.700000
+$exec xinput --set-prop "pointer:Logitech MX Master 2S" "libinput Accel Speed" 1.000000
+
+## Activate numlock
+$exec /usr/bin/numlockx on
+
+## run polybar
+$exec_always ~/.config/i3/scripts/launch_polybar.sh
+
+$exec xhost +local:
+$exec sleep 1 && pulseaudio --start
+$exec start-pulseaudio-x11
+
+## run compton to make terminals transparents
+$exec compton --config /dev/null && sleep 1
+$exec feh --bg-scale ~/.config/background.jpg
+
+## Start dunst notification server
+$exec --no-startup-id dunst
+
+#############################
+### settings for i3-gaps: ###
+#############################
+
+gaps inner 7
+gaps outer -1
+smart_gaps on
+smart_borders on
+
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym h      mode "$mode_gaps_horiz"
+        bindsym v      mode "$mode_gaps_verti"
+        bindsym t      mode "$mode_gaps_top"
+        bindsym r      mode "$mode_gaps_right"
+        bindsym b      mode "$mode_gaps_bottom"
+        bindsym l      mode "$mode_gaps_left"
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_horiz" {
+        bindsym plus  gaps horizontal current plus 5
+        bindsym minus gaps horizontal current minus 5
+        bindsym 0     gaps horizontal current set 0
+
+        bindsym Shift+plus  gaps horizontal all plus 5
+        bindsym Shift+minus gaps horizontal all minus 5
+        bindsym Shift+0     gaps horizontal all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_verti" {
+        bindsym plus  gaps vertical current plus 5
+        bindsym minus gaps vertical current minus 5
+        bindsym 0     gaps vertical current set 0
+
+        bindsym Shift+plus  gaps vertical all plus 5
+        bindsym Shift+minus gaps vertical all minus 5
+        bindsym Shift+0     gaps vertical all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_top" {
+        bindsym plus  gaps top current plus 5
+        bindsym minus gaps top current minus 5
+        bindsym 0     gaps top current set 0
+
+        bindsym Shift+plus  gaps top all plus 5
+        bindsym Shift+minus gaps top all minus 5
+        bindsym Shift+0     gaps top all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_right" {
+        bindsym plus  gaps right current plus 5
+        bindsym minus gaps right current minus 5
+        bindsym 0     gaps right current set 0
+
+        bindsym Shift+plus  gaps right all plus 5
+        bindsym Shift+minus gaps right all minus 5
+        bindsym Shift+0     gaps right all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_bottom" {
+        bindsym plus  gaps bottom current plus 5
+        bindsym minus gaps bottom current minus 5
+        bindsym 0     gaps bottom current set 0
+
+        bindsym Shift+plus  gaps bottom all plus 5
+        bindsym Shift+minus gaps bottom all minus 5
+        bindsym Shift+0     gaps bottom all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_left" {
+        bindsym plus  gaps left current plus 5
+        bindsym minus gaps left current minus 5
+        bindsym 0     gaps left current set 0
+
+        bindsym Shift+plus  gaps left all plus 5
+        bindsym Shift+minus gaps left all minus 5
+        bindsym Shift+0     gaps left all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+

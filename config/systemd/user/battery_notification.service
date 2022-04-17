@@ -1,0 +1,16 @@
+
+[Unit]
+
+Description=Dunst battery notification service
+
+[Service]
+
+Type=simple
+ExecStart=/bin/bash /home/lucio/.config/dunst/notifications/bat0.sh
+Restart=always
+RestartSec=180
+Environment="DISPLAY=:0" "XAUTHORITY=/home/lucio/.Xauthority"
+
+[Install]
+
+WantedBy=default.target

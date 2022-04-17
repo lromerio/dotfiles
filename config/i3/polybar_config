@@ -1,0 +1,476 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+; gruvbox palette
+a_bg        = #282828
+a_red       = #cc241d
+a_green     = #98971a
+a_yellow    = #d79921
+a_blue      = #458588
+a_purple    = #b16286
+a_aqua      = #689d6a
+a_gray      = #a89984
+
+b_gray      = #928374
+b_red       = #fb4934
+b_green     = #b8bb26
+b_yellow    = #fabd2f
+b_blue      = #83a598
+b_purple    = #d3869b
+b_aqua      = #8ec07c
+b_fg        = #ebdbb2
+
+bg0_h       = #1d2021
+bg0         = #282828
+bg1         = #3c3836
+bg2         = #504945
+bg4         = #7c6f64
+c_gray      = #928374
+c_orange    = #d65d0e
+
+bg0_s       = #32302f
+fg4         = #a89984
+fg3         = #bdae93
+fg2         = #d5c4a1
+fg1         = #ebdbb2
+fg0         = #fbf1c7
+d_orange    = #f38019
+
+; main colors
+alert = #fb4934
+
+
+;###############################################################
+[bar/default]
+monitor = ${env:MONITOR:eDP-1}
+
+; Require the monitor to be in connected state
+; XRandR sometimes report my monitor as being disconnected (when in use)
+monitor-strict = false
+
+bottom = false
+
+width = 100%
+height = 30
+radius = 0.0
+
+fixed-center = false
+enable-ipc = true
+
+background = ${colors.bg1}
+foreground = ${colors.fg2}
+
+line-size = 5
+line-color = ${colors.bg1}
+
+border-size = 0
+border-color = ${colors.bg1}
+
+; Number of spaces to add at the beginning/end of the bar
+; Individual side values can be defined using:
+padding-left = 0
+padding-right = 3
+
+; Number of spaces to add before/after each module
+; Individual side values can be defined using:
+; module-margin = 0
+module-margin-left = 2
+module-margin-right = 2
+
+; Fonts are defined using <font-name>;<vertical-offset>
+; Font names are specified using a fontconfig pattern.
+font-0 = fixed:pixelsize=13;1
+font-1 = unifont:fontformat=truetype:size=13:antialias=false;0
+font-2 = siji:pixelsize=9;1
+font-3 = "Font Awesome 5 Free:style=Solid:size=13;1:pixelsize=12"
+font-4 = "Font Awesome 5 Brands:style=Solid:size=13;1:pixelsize=12"
+font-5 = "Ubuntu Mono derivative Powerline:size=13;1"
+font-6 = "Ubuntu Mono derivative Powerline:size=13;1"
+
+modules-left = i3 xwindow
+modules-right = spotify pulseaudio backlight eth wlan cpu memory temperature date battery
+
+; wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+; The separator will be inserted between the output of each module
+; separator =
+
+; Locale used to localize various module data (e.g. date)
+; Expects a valid libc locale, for example: en_US.UTF-8
+locale = fr_CH.UTF-8
+
+
+;###############################################################
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+
+; [module/xkeyboard]
+; type = internal/xkeyboard
+; blacklist-0 = num lock
+;
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-prefix-underline = ${colors.secondary}
+;
+; label-layout = %{T5} %layout%%{T-}
+; label-layout-underline = ${colors.secondary}
+;
+; label-indicator-padding = 2
+; label-indicator-margin = 1
+; label-indicator-background = ${colors.secondary}
+; label-indicator-underline = ${colors.secondary}
+
+;###############################################################
+;                           i3 Module
+;###############################################################
+[module/i3]
+type = internal/i3
+strip-wsnumbers = false
+
+; Use fuzzy (partial) matching on labels when assigning icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces containing 'code' in the label
+; Default: false
+fuzzy-match = false
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = ${colors.bg0}
+label-mode-background = ${colors.d_orange}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.b_blue}
+label-focused-foreground = ${colors.bg0}
+label-focused-underline = ${colors.a_blue}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = 2
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.b_red}
+label-urgent-foreground = ${colors.bg0}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+; label-separator-padding = 0
+; label-separator-foreground = #ffb52a
+
+
+;###############################################################
+;                         spotify Module
+;###############################################################
+[module/spotify]
+type = custom/script
+interval = 1
+; format-suffix = "   "
+; format-prefix = "   "
+format = <label>
+; label = %title:0:50:...%
+label-foreground = ${colors.b_blue}
+exec = ~/.config/i3/scripts/polybar_spotify.py
+; format-underline = #1db954
+
+;control player
+click-left = spt playback -t
+click-right = spt playback -n
+click-middle = spt playback -p
+
+
+;###############################################################
+;                       pulseaudio Module
+;###############################################################
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = true
+interval = 5
+label-volume =  %percentage%%
+format-volume = %{A3:pavucontrol &:}<label-volume> <bar-volume>%{A}
+label-muted =  0%
+bar-volume-width = 10
+
+bar-volume-foreground-0 = ${colors.a_aqua}
+bar-volume-foreground-1 = ${colors.a_aqua}
+bar-volume-foreground-2 = ${colors.a_aqua}
+bar-volume-foreground-3 = ${colors.a_aqua}
+bar-volume-foreground-4 = ${colors.b_yellow}
+bar-volume-foreground-5 = ${colors.c_orange}
+bar-volume-foreground-6 = ${colors.a_red}
+
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.fg2}
+
+
+;###############################################################
+;                       backlight Module
+;###############################################################
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <label> <bar>
+enable-scroll = true
+
+; Available tokens:
+;   %percentage% (default)
+label =  %percentage%%
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = ${colors.a_yellow}
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = ${colors.a_yellow}
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.fg2}
+
+
+;###############################################################
+;                         eth Module
+;###############################################################
+[module/eth]
+type = internal/network
+interface = eth0
+interval = 5.0
+
+format-connected-underline = ${colors.a_green}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.fg2}
+label-connected =  %local_ip%
+
+format-disconnected =
+
+;###############################################################
+;                         wlan Module
+;###############################################################
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 5.0
+
+format-connected = <label-connected>
+format-connected-underline = ${colors.a_green}
+; Available tokens:
+; ;   %ifname%    [wireless+wired]
+; ;   %local_ip%  [wireless+wired]
+; ;   %essid%     [wireless]
+; ;   %signal%    [wireless]
+; ;   %upspeed%   [wireless+wired]
+; ;   %downspeed% [wireless+wired]
+; ;   %linkspeed% [wired]
+; ; Default: %ifname% %local_ip%
+label-connected =  %essid% %signal%%     %local_ip%
+
+format-disconnected =  
+format-disconnected-underline = ${colors.a_green}
+
+
+
+;###############################################################
+;                         cpu Module
+;###############################################################
+[module/cpu]
+type = internal/cpu
+interval = 5
+format = %{A1:alacritty -e htop &:}<label>%{A}
+; format-prefix = " "
+format-prefix-foreground = ${colors.fg2}
+format-underline = ${colors.a_yellow}
+; label = CPU %percentage%%
+label =  %percentage%%
+
+
+;###############################################################
+;                         cpu Module
+;###############################################################
+[module/memory]
+type = internal/memory
+interval = 10
+format = %{A1:xfce4-taskmanager &:}<label>%{A}
+; format-prefix = " "
+format-prefix-foreground = ${colors.fg2}
+format-underline = ${colors.a_blue}
+; Available tokens:
+; ;   %percentage_used% (default)
+; ;   %percentage_free%
+; ;   %gb_used%
+; ;   %gb_free%
+; ;   %gb_total%
+; ;   %mb_used%
+; ;   %mb_free%
+; ;   %mb_total%
+label =  %gb_used% (%percentage_used%%)
+
+
+;###############################################################
+;                      temperature Module
+;###############################################################
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = ${colors.a_purple}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.b_red}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.fg2}
+
+
+;###############################################################
+;                         date Module
+;###############################################################
+[module/date]
+type = internal/date
+interval = 60
+
+date = " %d.%m.%Y"
+time = "%H:%M "
+
+; format-prefix = 
+format-prefix-foreground = ${colors.fg2}
+format-underline = ${colors.a_aqua}
+label = %{A3:alacritty --hold -t calendar -e cal &:}%date%   %time% %{A}
+
+
+;###############################################################
+;                         battery Module
+;###############################################################
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+
+format-charging = <animation-charging> <label-charging>
+; format-charging-underline = ${colors.c_orange}
+
+format-discharging = <ramp-capacity> <label-discharging>
+; format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.fg2}
+; format-full-underline = ${self.format-charging-underline}
+
+label-full =  %percentage%%
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+; Only applies if <ramp-capacity> as used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.fg2}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.fg2}
+animation-charging-framerate = 750
+
+
+;###############################################################
+; [module/vpn]
+; type = ~/.config/i3/scripts/openvpn
+; exec = echo vpn
+; exec-if = pgrep -x openvpn
+; interval = 5
+; format = <label>
+; label = %output:0:15%...
+; format-underline = #268bd2
+; format-prefix = "🖧 "
+; format-prefix-foreground = #5b
+
+
+;###############################################################
+; [module/vlc]
+; type = custom/script
+; exec = ~/.config/i3/scripts/vlc-get-song.sh
+; exec-if = wmctrl -lp|grep $(pgrep -x vlc)
+; interval = 10
+; format = <label>
+; label = %{T5}%{T-} %output%
+; format-underline = #268bd2
+; format-prefix-foreground = ${root.background-alt}
+; format-prefix-foreground = #5b
+
+
+; ;###############################################################
+; [module/bluetooth]
+; type = custom/script
+; interval = 120
+; exec = ~/.config/i3/scripts/i3bluetooth.sh
+; format = %{A1:blueman-manager &:}<label>%{A}
+; format-underline = #268bd2
+; format-prefix-foreground = ${root.background-alt}
+
+;###############################################################
+[settings]
+screenchange-reload = false
+
+;###############################################################
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini

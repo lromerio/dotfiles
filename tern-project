@@ -1,0 +1,15 @@
+{
+  "libs": [
+    "ecma5",
+    "ecma6",
+    "browser",
+    "ecmascript",
+    "jquery",
+    "react",
+    "underscore"
+  ],
+  "plugins": {
+    "node": {},
+    "esmodules": {}
+  }
+}
