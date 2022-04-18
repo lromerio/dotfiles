@@ -30,6 +30,7 @@
     ~/.config/gdbinit-gef.py: config/gdbinit-gef.py
     ~/.config/dunst: config/dunst
     ~/.config/alacritty: config/alacritty
+    ~/.config/zsh: config/zsh
 
     ~/.config/systemd/user/battery_notification.service: config/systemd/user/battery_notification.service
 

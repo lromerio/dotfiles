@@ -9,6 +9,9 @@ if has('nvim')
     set ttimeout
     set ttimeoutlen=0
 endif
+if $TERM == 'alacritty'
+    set ttymouse=sgr
+endif
 
 " Set column border
 set cc=80
